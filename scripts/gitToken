@@ -1,3 +1,3 @@
 xclip -sel c < $HOME/scripts/.git-token 
-echo 'Token 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 copied to the clipboard!'
-echo 'For more information go to https://github.com/settings/tokens'
+echo 'Token copied to the clipboard!'
+echo 'For more information visit https://github.com/settings/tokens'
