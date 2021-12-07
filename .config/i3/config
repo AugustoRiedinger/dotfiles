@@ -135,6 +135,9 @@ bindsym $mod+w exec whatsapp-nativefier-dark
 bindsym $mod+Shift+w exec telegram-desktop 
 bindsym $mod+m exec thunderbird
 
+# start pdf viewer zathura:
+bindsym $mod+v exec zathura
+
 # kill focused window
 bindsym $mod+c kill
 
