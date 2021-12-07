@@ -131,7 +131,9 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+b exec qutebrowser
 
 # start messaging apps:
-bindsym $mod+m exec whatsapp-nativefier-dark
+bindsym $mod+w exec whatsapp-nativefier-dark
+bindsym $mod+Shift+w exec telegram-desktop 
+bindsym $mod+m exec thunderbird
 
 # kill focused window
 bindsym $mod+c kill
