@@ -1,0 +1,5 @@
+sudo pacman -S bluez-utils bluedevil blueman pulseaudio-bluetooth
+sudo rfkill unblock bluetooth
+sudo systemctl enable --now bluetooth
+sudo systemctl start bluetooth
+echo 'You'll have to restart the system in order to use blueman'
