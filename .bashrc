@@ -1,222 +1,131 @@
-#
-# ~/.bashrc
-#
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+# * * * * * * * * * * * * * *       EXPORTS       * * * * * * * * * * * * * *
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+# Set alacritty as terminal:
+export TERM="alacritty"
 
-# If not running interactively, don't do anything
+# No duplicate entries in history:
+export HISTCONTROL=ignoredups:erasedups
+
+# Set editor as vim:
+export EDITOR="vim"
+
+# Set vim as manpager:
+export MANPAGER='/bin/bash -c "vim -MRn -c \"set buftype=nofile showtabline=0 ft=man ts=8 nomod nolist norelativenumber nonu noma\" -c \"normal L\" -c \"nmap q :qa<CR>\"</dev/tty <(col -b)"'
+
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+# * * * * * * * * * * * * * *        GENERAL      * * * * * * * * * * * * * *
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+# Set vi mode:
+set -o vi
+bind -m vi-command 'Control-l: clear-screen'
+bind -m vi-insert 'Control-l: clear-screen'
+
+# If not running interactively, don't do anything:
 [[ $- != *i* ]] && return
 
-[[ -f ~/.welcome_screen ]] && . ~/.welcome_screen
+# Change to named directory without using 'cd':
+shopt -s autocd 
 
-_set_my_PS1() {
-    PS1='[\u@\h \W]\$ '
-    if [ "$(whoami)" = "liveuser" ] ; then
-        local iso_version="$(grep ^VERSION= /usr/lib/endeavouros-release 2>/dev/null | cut -d '=' -f 2)"
-        if [ -n "$iso_version" ] ; then
-            local prefix="eos-"
-            local iso_info="$prefix$iso_version"
-            PS1="[\u@$iso_info \W]\$ "
-        fi
-    fi
-}
-_set_my_PS1
-unset -f _set_my_PS1
+# Autocorrect cd misspellings:
+shopt -s cdspell
 
-ShowInstallerIsoInfo() {
-    local file=/usr/lib/endeavouros-release
-    if [ -r $file ] ; then
-        cat $file
-    else
-        echo "Sorry, installer ISO info is not available." >&2
-    fi
-}
+# Save multi-line commands in history as single line:
+shopt -s cmdhist
+shopt -s dotglob
 
+# Do not overwrite history:
+shopt -s histappend
 
-alias ls='ls --color=auto'
-alias l='ls -lav --ignore=.?*'   # show long listing but no hidden dotfiles except "."
+# Expand aliases:
+shopt -s expand_aliases
+# Ignore upper and lowercase when TAB completion:
+bind "set completion-ignore-case on"
 
-[[ "$(whoami)" = "root" ]] && return
-
-[[ -z "$FUNCNEST" ]] && export FUNCNEST=100          # limits recursive functions, see 'man bash'
-
-## Use the up and down arrow keys for finding a command in history
-## (you can write some initial letters of the command first).
+# Use the up and down arrow keys for finding a command in history:
 bind '"\e[A":history-search-backward'
 bind '"\e[B":history-search-forward'
 
-################################################################################
-## Some generally useful functions.
-## Consider uncommenting aliases below to start using these functions.
+# Adding personal scripts to the global path:
+PATH=$PATH:$HOME/scripts
 
-
-_GeneralCmdCheck() {
-    # A helper for functions UpdateArchPackages and UpdateAURPackages.
-
-    echo "$@" >&2
-    "$@" || {
-        echo "Error: '$*' failed." >&2
-        exit 1
-    }
-}
-
-_CheckInternetConnection() {
-    # curl --silent --connect-timeout 8 https://8.8.8.8 >/dev/null
-    eos-connection-checker
-    local result=$?
-    test $result -eq 0 || echo "No internet connection!" >&2
-    return $result
-}
-
-_CheckArchNews() {
-    local conf=/etc/eos-update-notifier.conf
-
-    if [ -z "$CheckArchNewsForYou" ] && [ -r $conf ] ; then
-        source $conf
-    fi
-
-    if [ "$CheckArchNewsForYou" = "yes" ] ; then
-        local news="$(yay -Pw)"
-        if [ -n "$news" ] ; then
-            echo "Arch news:" >&2
-            echo "$news" >&2
-            echo "" >&2
-            # read -p "Press ENTER to continue (or Ctrl-C to stop): "
-        else
-            echo "No Arch news." >&2
-        fi
-    fi
-}
-
-UpdateArchPackages() {
-    # Updates Arch packages.
-
-    _CheckInternetConnection || return 1
-
-    _CheckArchNews
-
-    #local updates="$(yay -Qu --repo)"
-    local updates="$(checkupdates)"
-    if [ -n "$updates" ] ; then
-        echo "Updates from upstream:" >&2
-        echo "$updates" | sed 's|^|    |' >&2
-        _GeneralCmdCheck sudo pacman -Syu "$@"
-        return 0
-    else
-        echo "No upstream updates." >&2
-        return 1
-    fi
-}
-
-UpdateAURPackages() {
-    # Updates AUR packages.
-
-    _CheckInternetConnection || return 1
-
-    local updates
-    if [ -x /usr/bin/yay ] ; then
-        updates="$(yay -Qua)"
-        if [ -n "$updates" ] ; then
-            echo "Updates from AUR:" >&2
-            echo "$updates" | sed 's|^|    |' >&2
-            _GeneralCmdCheck yay -Syua "$@"
-        else
-            echo "No AUR updates." >&2
-        fi
-    else
-        echo "Warning: /usr/bin/yay does not exist." >&2
-    fi
-}
-
-UpdateAllPackages() {
-    # Updates all packages in the system.
-    # Upstream (i.e. Arch) packages are updated first.
-    # If there are Arch updates, you should run
-    # this function a second time to update
-    # the AUR packages too.
-
-    UpdateArchPackages || UpdateAURPackages
-}
-
-
-_open_files_for_editing() {
-    # Open any given document file(s) for editing (or just viewing).
-    # Note1: Do not use for executable files!
-    # Note2: uses mime bindings, so you may need to use
-    #        e.g. a file manager to make some file bindings.
-
-    if [ -x /usr/bin/exo-open ] ; then
-        echo "exo-open $*" >&2
-        /usr/bin/exo-open "$@" >& /dev/null &
-        return
-    fi
-    if [ -x /usr/bin/xdg-open ] ; then
-        for file in "$@" ; do
-            echo "xdg-open $file" >&2
-            /usr/bin/xdg-open "$file" >& /dev/null &
-        done
-        return
-    fi
-
-    echo "Sorry, none of programs [$progs] is found." >&2
-    echo "Tip: install one of packages" >&2
-    for prog in $progs ; do
-        echo "    $(pacman -Qqo "$prog")" >&2
-    done
-}
-
-_Pacdiff() {
-    local differ pacdiff=/usr/bin/pacdiff
-
-    if [ -n "$(echo q | DIFFPROG=diff $pacdiff)" ] ; then
-        for differ in kdiff3 meld diffuse ; do
-            if [ -x /usr/bin/$differ ] ; then
-                DIFFPROG=$differ su-c_wrapper $pacdiff
-                break
-            fi
-        done
-    fi
-}
-
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+# * * * * * * * * * * * * * *        STARTUP      * * * * * * * * * * * * * *
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 # Launch super-cool Starship Prompt:
 eval "$(starship init bash)"
 
-# Launch tmux:
-#if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-	  #exec tmux
-#fi
+# Run fm6000 on startup:
+fm6000 -f $HOME/scripts/.astronaut
 
 # Remap esc key to caps lock:
 setxkbmap -option caps:escape
-
-# Autohide the pointer on startup:
+# Autohide the pointer after 4 secs idle:
 unclutter -idle 4 -jitter 2 -root &
 
 # Setting up the OpenFOAM environment:
 source /opt/OpenFOAM/OpenFOAM-9/etc/bashrc
 export WM_OPTIONS=$WM_ARCH$WM_COMPILER$WM_PRECISION_OPTION$WM_LABEL_OPTION$WM_COMPILE_OPTION
 
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+# * * * * * * * * * * * * * *      FUNCTIONS      * * * * * * * * * * * * * *
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+# Archive extraction - usage: ex <file>:
+ex ()
+{
+  if [ -f "$1" ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *.deb)       ar x $1      ;;
+      *.tar.xz)    tar xf $1    ;;
+      *.tar.zst)   unzstd $1    ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
 
-# Adding personal scripts to the global path:
-PATH=$PATH:$HOME/scripts
-
-#------------------------------------------------------------
-
-## Aliases for the functions above.
-
-alias v='vim'
-alias ll='ls -lh --group-directories-first'
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+# * * * * * * * * * * * * * *        ALIASES      * * * * * * * * * * * * * *
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+# File management:
+alias ls='exa -l --color=always --group-directories-first'
+alias la='ls -al --color=always --group-directories-first'
+alias lt='exa -aT --color=always --group-directories-first'
 alias cl='clear'
-alias la='ls -lhA --group-directories-first'
 alias ..='cd ..'
 alias mv='mv -i'
 alias rm='rm -i'
-alias init='git init'
-alias stat='git status'
-alias commit='git commit'
-alias add='git add'
-alias push='git push'
-alias pull='git pull'
+alias cp='cp -i'
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
 alias drag='dragon-drag-and-drop'
-################################################################################
 
-# Run fm6000 on startup:
-fm6000 -f $HOME/scripts/.astronaut
+# Vim:
+alias v='vim'
+
+# Git:
+alias addup='git add -u'
+alias addall='git add .'
+alias branch='git branch'
+alias checkout='git checkout'
+alias clone='git clone'
+alias commit='git commit -m'
+alias fetch='git fetch'
+alias pull='git pull origin'
+alias push='git push origin'
+alias stat='git status'  
+alias tag='git tag'
+alias newtag='git tag -a'
