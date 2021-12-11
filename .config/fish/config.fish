@@ -27,13 +27,6 @@ end
 set -e fish_user_paths
 set -U fish_user_paths /bin $HOME/scripts $fish_user_paths
 
-#Autocomplete and highligth colors:
-set fish_color_normal brcyan
-set fish_color_autosuggestion '#7d7d7d'
-set fish_color_command brcyan
-set fish_color_error '#ff6c6b'
-set fish_color_param brcyan
-
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 # * * * * * * * * * * * * * *        STARTUP      * * * * * * * * * * * * * *
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -42,17 +35,14 @@ if ! status -i
     exit
 end
 
-# Launch super-cool starship prompt:
-starship init fish | source
-
-# Run fm6000 on startup:
-fm6000 -f $HOME/scripts/.astronaut
-
 # Remap esc key to caps lock:
 setxkbmap -option caps:escape
 
 # Autohide the pointer after 4 secs idle:
 unclutter -idle 4 -jitter 2 -root &
+
+# Cool term art:
+colorscript random
 
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 # * * * * * * * * * * * * * *      FUNCTIONS      * * * * * * * * * * * * * *
@@ -104,9 +94,6 @@ alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
-# Vim:
-alias v='vim'
-
 # Changing "ls" to "exa":
 alias ls='exa -l --color=always --group-directories-first' 
 alias la='exa -la --color=always --group-directories-first'
@@ -137,3 +124,8 @@ alias pull='git pull origin'
 alias push='git push origin'
 alias tag='git tag'
 alias newtag='git tag -a'
+
+# Programs:
+alias v='vim'
+alias pdf='zathura'
+alias img='vimiv'
