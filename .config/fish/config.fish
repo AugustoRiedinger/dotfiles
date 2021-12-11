@@ -54,10 +54,6 @@ setxkbmap -option caps:escape
 # Autohide the pointer after 4 secs idle:
 unclutter -idle 4 -jitter 2 -root &
 
-# Setting up the OpenFOAM environment:
-#source /opt/OpenFOAM/OpenFOAM-9/etc/bashrc
-#set -Ux WM_OPTIONS $WM_ARCH$WM_COMPILER$WM_PRECISION_OPTION$WM_LABEL_OPTION$WM_COMPILE_OPTION
-
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 # * * * * * * * * * * * * * *      FUNCTIONS      * * * * * * * * * * * * * *
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
