@@ -47,7 +47,7 @@ set backspace=indent,eol,start
 set ttyfast
 
 " Status bar
-set laststatus=2
+"set laststatus=1
 
 " Display options
 set showmode
@@ -60,7 +60,7 @@ set matchpairs+=<:>
 set number
 
 " Set status line display
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ [BUFFER=%n]\ %{strftime('%c')}
+"set statusline=%t
 
 " Encoding
 set encoding=utf-8
@@ -94,20 +94,24 @@ nmap <silent> gr <Plug>(coc-references)
 " Misc
 :imap ii <Esc>
 
-" Map the <Space> key to toggle a selected fold opened/closed.
-nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-vnoremap <Space> zf
-
-"Autosave folds
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
-
 " Search shortcuts
 let mapleader = ","
 noremap <leader>w :w<cr>
 noremap <leader>gs :CocSearch
 noremap <leader>fs :Files<cr>
 noremap <leader><cr> <cr><c-w>h:q<cr>
+nnoremap / /\v
+vnoremap / /\v
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set showmatch
+map <leader><space> :let @/=''<cr> 
+
+" Copy and pasting:
+vnoremap <C-c> "+y
+map <C-v> "+p
 
 " Vim's auto indentation feature does not work properly with text copied from outside of Vim. Press the <F2> key to toggle paste mode on/off.
 nnoremap <F2> :set invpaste paste?<CR>
@@ -138,10 +142,10 @@ Plug 'alvan/vim-closetag'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" Vimtex configuration:
+" Vimtex :
 Plug 'lervag/vimtex'
 
-" UltiSnips configuration:
+" UltiSnips :
 Plug 'sirver/ultisnips'
 
 " Tex autoconceal:
@@ -150,6 +154,7 @@ Plug 'KeitaNakamura/tex-conceal.vim'
 " Interface and theming:
 Plug 'dylanaraps/wal'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'yggdroot/indentline'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
@@ -186,5 +191,5 @@ let g:tex_conceal='abdmg'
 hi Conceal ctermbg=none
 
 "Interface configuration:
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 2
 let g:coc_global_extensions = [ 'coc-tsserver' ]
