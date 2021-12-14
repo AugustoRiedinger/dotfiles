@@ -10,8 +10,23 @@ set nocompatible
 set nolist
 set rnu
 
+" Turn off comments continuation:
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
 " Helps force plug-ins to load correctly when it is turned back on below.
 filetype on
+
+" Show partial command you type in the last line of the screen:
+set showcmd
+
+" Enable auto completion menu after pressing TAB:
+set wildmenu
+
+" Add color to files with no extention:
+au BufNewFile,BufRead * if &syntax == '' | set syntax=c | endif
+
+" Make wildmenu behave like similar to Bash completion:
+set wildmode=list:longest
 
 " Turn on syntax highlighting.
 syntax on
@@ -47,7 +62,7 @@ set backspace=indent,eol,start
 set ttyfast
 
 " Status bar
-"set laststatus=1
+set laststatus=2
 
 " Display options
 set showmode
@@ -59,8 +74,6 @@ set matchpairs+=<:>
 " Show line numbers
 set number
 
-" Set status line display
-"set statusline=%t
 
 " Encoding
 set encoding=utf-8
@@ -102,7 +115,6 @@ noremap <leader>fs :Files<cr>
 noremap <leader><cr> <cr><c-w>h:q<cr>
 nnoremap / /\v
 vnoremap / /\v
-set hlsearch
 set incsearch
 set ignorecase
 set smartcase
@@ -192,4 +204,5 @@ hi Conceal ctermbg=none
 
 "Interface configuration:
 let g:airline_powerline_fonts = 2
+let g:airline_theme='powerlineish'
 let g:coc_global_extensions = [ 'coc-tsserver' ]
