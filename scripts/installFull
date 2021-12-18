@@ -1,0 +1,1 @@
+sudo pacman -S vim gvim vimiv zathura xcompmgr qutebrowser alacritty libreoffice vlc telegram-desktop thunderbird
