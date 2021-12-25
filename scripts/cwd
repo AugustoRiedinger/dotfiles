@@ -1,4 +1,0 @@
-pwd > $HOME/scripts/.pwd
-xclip -sel c < $HOME/scripts/.pwd
-cat $HOME/scripts/.pwd
-echo '^ Copied to clipboard!'
