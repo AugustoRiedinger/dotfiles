@@ -1,0 +1,84 @@
+# -*- mode: snippet -*-
+# name: report
+# key: report
+# --
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+% * * * * * * * * * * * *         LATEX PREAMBLE      * * * * * * * * *
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+% Reportdocument class:
+\documentclass{report}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%                                    PACKAGES:
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% Setting the laguage as spanish:
+\usepackage[spanish]{babel}
+
+% Maths packages:
+\usepackage{amsmath,nicefrac}
+
+% Figures packages:
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{siunitx}
+
+% Listings and code packages:
+\usepackage{listings}
+\usepackage{algorithm,algorithmic}
+
+% Hyperlinks - URLs set in blue, rest in black:
+\usepackage[colorlinks=true,linkcolor=black,anchorcolor=black,citecolor=cyan,filecolor=black,menucolor=black,runcolor=black,urlcolor=blue]{hyperref}
+
+% Tables from cvs:
+\usepackage{csvsimple}
+
+% Changing the document margins:
+\usepackage[margin=0.5in]{geometry}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%                                 CONFIGURATION:
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% Title:
+\title{$1}
+
+% Listings package configuration:
+\lstset{
+		language=octave,
+		basicstyle=\small\sffamily,
+		numberstyle=\tiny,
+		frame=tb,
+		tabsize=4,
+		columns=fixed,
+		showstringspaces=false,
+		showtabs=false,
+		keepspaces,
+		commentstyle=\color{green},
+		keywordstyle=\color{blue}
+}
+
+% Sintax setup:
+\sisetup{
+	round-mode		= places, % Rounds numbers
+	round-precision = 2,	  % to 2 places
+}
+
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+% * * * * * * * * * * * *         BEGIN DOCUMENT	  * * * * * * * * *
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+\begin{document}
+
+	% Title information:
+	\maketitle
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	% Table of contents:
+	\tableofcontents
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	\part{$2}
+		$0
+
+\end{document}

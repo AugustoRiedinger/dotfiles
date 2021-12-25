@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: refe
+# key: refe
+# --
+\ref{eq:$1}$0

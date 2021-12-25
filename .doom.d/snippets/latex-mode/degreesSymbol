@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: degreesSymbol
+# key: °
+# --
+^{\circ} $0

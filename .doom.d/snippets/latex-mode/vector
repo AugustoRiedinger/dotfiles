@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: vector
+# key: ver
+# --
+\vec{$1}$0
