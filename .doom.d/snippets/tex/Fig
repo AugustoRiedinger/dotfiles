@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Fig
+# key: Fig
+# condition: t
+# --
+
+Fig. \ref{fig:$1} $0

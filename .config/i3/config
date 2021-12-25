@@ -127,6 +127,9 @@ bindsym $mod+r mode "resize"
 # start a terminal
 bindsym $mod+Return exec alacritty -e fish
 
+# start doom emacs
+bindsym $mod+e exec emacsclient -c -a 'emacs'
+
 # start browser:
 bindsym $mod+b exec qutebrowser
 
@@ -201,7 +204,7 @@ bindsym $mod+f fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+g layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+t layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -220,9 +223,6 @@ bindsym $mod+Shift+n exec ~/.config/i3/scripts/empty_workspace
 # volume
 bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
-
-
-# Pulse Audio controls
 
 # gradular volume control
 bindsym $mod+XF86AudioRaiseVolume exec amixer -D pulse sset Master 1%+ && pkill -RTMIN+1 i3blocks
@@ -306,7 +306,7 @@ exec --no-startup-id blueberry-tray
 # options could need changes, related to used GPU and drivers.
 # to find the right setting consult the archwiki or ask at the forum.
 # xcompmgr: https://wiki.archlinux.org/title/Xcompmgr
-exec --no-startup-id xcompmgr -C -n &
+#exec --no-startup-id xcompmgr -C -n &
 # or an more specialized config like this:
 #exec --no-startup-id xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
 # or:
@@ -328,7 +328,7 @@ exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
 
 # Autostart apps as you like
 # Terminal on ws2:
-exec --no-startup-id i3-msg 'workspace 2; exec alacritty -e fish'
+exec --no-startup-id i3-msg 'workspace 2; exec alacritty'
 
 # Messaging apps on ws1:
 exec --no-startup-id i3-msg 'workspace 1; exec whatsapp-nativefier-dark'
@@ -339,6 +339,10 @@ exec --no-startup-id i3-msg 'workspace 1; exec telegram-desktop'
 for_window [class="Yad" instance="yad"] floating enable
 for_window [class="Galculator" instance="galculator"] floating enable
 for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
+for_window [class="zoom" title="Settings"] floating enable, move position center
+for_window [class="zoom" title="Zoom - Licensed Account"] floating enable, move position center
+for_window [class="zoom" title="^zoom$"] floating enable
+for_window [class="zoom"] [title="Chat"] move position mouse
 
 # set floating (nontiling) for special apps
 for_window [class="Xsane" instance="xsane"] floating enable
@@ -452,7 +456,7 @@ bindsym $mod+space exec rofi -modi drun -show drun \
 
 ## rofi bindings for window menu ($mod+t /F10 optional disabled)
 
-bindsym $mod+t exec rofi -show window \
+bindsym $mod+y exec rofi -show window \
 		-config ~/.config/rofi/rofidmenu.rasi
 
 #bindsym F10 exec rofi -show window \

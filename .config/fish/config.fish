@@ -25,7 +25,7 @@ end
 ### PATH CONFIG: 
 # First line removes the path; second line sets it.  Without the first line, your path gets massive and fish becomes very slow:
 set -e fish_user_paths
-set -U fish_user_paths /bin $HOME/scripts $fish_user_paths
+set -U fish_user_paths /bin $HOME/scripts $HOME/.emacs.d/bin  $fish_user_paths
 
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 # * * * * * * * * * * * * * *        STARTUP      * * * * * * * * * * * * * *
@@ -35,7 +35,7 @@ if ! status -i
     exit
 end
 
-# Remap esc key to caps lock:
+# Change caps to esc:
 setxkbmap -option caps:escape
 
 # Autohide the pointer after 4 secs idle:
@@ -127,6 +127,8 @@ alias newtag='git tag -a'
 
 # Programs:
 alias v='vim'
+alias eser='emacs --daemon &'
 alias pdf='zathura'
 alias img='vimiv'
 alias shareScreen='xcompmgr -c -l0 -t0 -r0 -o.00'
+alias drag='dragon-drag-and-drop'
