@@ -56,3 +56,5 @@
 (package! dashboard)
 (package! yasnippet)
 (package! org-bullets)
+(package! org-superstar)
+(package! auctex)

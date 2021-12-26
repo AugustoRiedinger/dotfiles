@@ -8,6 +8,9 @@
 ;; Setting line numbers:
 (setq display-line-numbers-type t)
 
+;; Copy and paste from system clipboard:
+(setq x-select-enable-clipboard t)
+
 ;; Dashboard config:
 (use-package dashboard
 :init
@@ -18,9 +21,7 @@
 (setq dashboard-startup-banner 'logo)
 (setq dashboard-items '((recents . 5)
                         (agenda . 5)
-                        (bookmarks . 3)
-                        (projects . 3)
-                        (registers . 3)))
+                        (bookmarks . 3)))
 :config
 (dashboard-setup-startup-hook)
 (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
@@ -45,3 +46,14 @@
   (add-to-list 'load-path
                "~/.doom.d/snippets/")
   (yas-global-mode 1))
+
+;; Config latex:
+(setq tex-dvi-view-command "xdvi")
+(with-eval-after-load 'ox-latex
+   (add-to-list 'org-latex-classes
+                '("IEEEtran" "\\documentclass{IEEEtran}"
+                  ("\\section{%s}" . "\\section*{%s}")                                                                                                                                                                                     
+                  ("\\subsection{%s}" . "\\subsection*{%s}")
+                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
