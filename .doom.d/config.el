@@ -35,6 +35,7 @@
   (setq org-src-preserve-indentation nil
         org-src-tab-acts-natively t
         org-edit-src-content-indentation 0)
+  (setq org-highlight-latex-and-related '(latex))
 
 (use-package org-superstar
   :config
