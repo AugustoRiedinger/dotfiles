@@ -1,0 +1,77 @@
+#+TITLE: DOTFILES
+
+* Current OS: EndeavourOS Linux x86_64
+
+* Files description
+
+All files should be placed at your $HOME directory, with the current directories shown.
+
+** .config
+
+*** alacritty
+
+Contains the configuration for alacritty terminal emulator, mainly the theme and colors.
+
+*** fish
+
+Contains the configuration for the fish shell. All files except config.fish are defaults; and config.fish contains all the shell, startup and functions configurations, as well as aliases. The prompt is configured with omf (Oh My Fish!) - currently using the slacker theme.
+
+*** i3
+
+Contains the configuration for i3 window manager, with all the keybindings, font settings and workspace management.
+
+*** qutebrowser
+
+Contains the configuration for qutebrowser in python. It's mainly all defaults, but it has a few tweaks.
+
+*** rofi
+
+Contains the configuration for rofi menu. Mainly all the defaults of EndeavourOS.
+
+*** starship.toml
+
+The configuration for starship prompt. It's modified to work with no symbols and git management. It is not used with fish shell.
+
+** .doom.d
+
+This directory contains the configuration for doom emacs.
+
+*** snippets
+
+Contains snippets created with yasnippets package.
+
+*** config.el
+
+This is the main config file for doom emacs, where packages and general configuration is done.
+
+*** custom.el
+
+Doom Emac's default.
+
+*** init.el
+
+A few packages are uncommented in this file. It is not reccomended to add lines outside of the comments in it.
+
+*** packages.el
+
+Here community packages are installed.
+
+** .emacs.d
+
+This directory contains emacs configuration. Currently using Doom Emac's defaults.
+
+** .vim
+
+This directory contains startup vim configuration. Mainly used for snippets created with UltiSnips.
+
+** .bashrc
+
+This file contains the configuration for the bash shell. Currently used to launch fish-bash-fish from within fish in order to configure OpenFOAM (see foam script in  https://github.com/AugustoRiedinger/scripts/blob/master/foam)
+
+** .tmux.conf
+
+Tmux configuration file. Currently not used within i3 WM.
+
+** .vimrc
+
+Vim configuration file. Defined theme, plugins and general configuration. To install plugins use PlugInstall.
