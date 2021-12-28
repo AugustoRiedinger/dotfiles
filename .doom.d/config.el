@@ -6,7 +6,8 @@
 (setq doom-theme 'doom-one)
 
 ;; Setting line numbers:
-(setq display-line-numbers-type t)
+(display-line-numbers-mode)
+(setq display-line-numbers-type 'relative)
 
 ;; Copy and paste from system clipboard:
 (setq x-select-enable-clipboard t)
