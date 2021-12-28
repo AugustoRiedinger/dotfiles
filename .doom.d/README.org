@@ -1,0 +1,141 @@
+#+TITLE: Doom Emac's Config
+#+AUTHOR: A. Riedinger
+#+PROPERTY: header-args :tangle config.el
+
+* TABLE OF CONTENTS :toc:
+- [[#general][GENERAL]]
+- [[#packages][PACKAGES]]
+  - [[#dashboard][DASHBOARD]]
+  - [[#latex][LATEX]]
+  - [[#org-mode][ORG-MODE]]
+  - [[#snippets][SNIPPETS]]
+
+* GENERAL
+
+First set up full name and email adress:
+
+#+begin_src emacs-lisp
+(setq user-full-name "Augusto Riedinger"
+      user-mail-address "riedinger.augusto@gmail.com")
+#+end_src
+
+Now, the theme is selected. I'm currently using Doom Emac's 'doom-one' default theme.
+
+#+begin_src emacs-lisp
+(setq doom-theme 'doom-one)
+#+end_src
+
+Now, the line numbering is changed to relative but the current line number is mantained. The first line sets it globally and the second one does the trick.
+
+#+begin_src emacs-lisp
+(display-line-numbers-mode)
+(setq display-line-numbers-type 'relative)
+#+end_src
+
+Finally the "+" buffers are enabled, in order to copy/paste from the system's keyboard. The default EVIL keybindings are currently used, i.e '"+y' to yank to the system's clipboard and '"+p' to paste from the system's clipboard.
+
+#+begin_src emacs-lisp
+(setq x-select-enable-clipboard t)
+#+end_src
+
+* PACKAGES
+
+Here I set up and configure the different external packages. They are all installed in 'packages.el' (remember to do a 'doom sync' after changin 'packages.el')
+
+** DASHBOARD
+
+Emacs Dashboard is an extensible startup screen showing recent files, bookmars and more.
+
+The following configurations are made in the following lines:
+ + Default file and heading icons are set.
+ + All the content is put at the centre of the screen.
+ + The text at the bottom of the logo is changed.
+ + The logo is changed from Doom's to the default Emacs logo.
+ + Three items are set - recents, agenda and bookmarks - with its respective lengths.
+
+#+begin_src emacs-lisp
+(use-package dashboard
+:init
+(setq dashboard-set-heading-icons t)
+(setq dashboard-set-file-icons t)
+(setq dashboard-center-content t)
+(setq dashboard-banner-logo-title "Emacs is more than a text editor!")
+(setq dashboard-startup-banner 'logo)
+(setq dashboard-items '((recents . 5)
+                        (agenda . 5)
+                        (bookmarks . 3)))
+:config
+(dashboard-setup-startup-hook)
+#+end_src
+
+The following setting ensures that emacsclient always opens on *dashboard* rather than *scratch*.
+
+#+begin_src emacs-lisp
+(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+#+end_src
+
+** LATEX
+
+Text highlight and latex functions are enabled in all .tex files:
+
+#+begin_src emacs-lisp
+(setq tex-dvi-view-command "xdvi")
+#+end_src
+
+Now we set up IEEEtran as a new '\documentclass'. It can be installed with 'texlive-publisher' from the Arch repository.
+
+#+begin_src emacs-lisp
+(with-eval-after-load 'ox-latex
+   (add-to-list 'org-latex-classes
+                '("IEEEtran" "\\documentclass{IEEEtran}"
+                  ("\\section{%s}" . "\\section*{%s}")
+                  ("\\subsection{%s}" . "\\subsection*{%s}")
+                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+#+end_src
+
+** ORG-MODE
+
+Here we set up different setting for working in org-mode.
+ + The default directories for org files and agenda are change to '~/org/' and '~/org/agenda/' respectively.
+ + The default keywords are changed and some more are added.
+ + Some identation is made in order to make everything look neat.
+
+#+begin_src emacs-lisp
+(add-hook 'org-mode-hook 'org-indent-mode))
+  (setq org-directory "~/org/"
+        org-agenda-files '("~/org/agenda/")
+        org-log-done 'time)
+  (setq org-todo-keywords '((sequence "TODO(t)" "PROJ(P)" "PAR(p)" "FINAL(f)" "LAB(l)" "EXP(e)" "CANCELLED(c)" "CLASS(C)" "|")))
+  (setq org-src-preserve-indentation nil
+        org-src-tab-acts-natively t
+        org-edit-src-content-indentation 0)
+#+end_src
+
+Latex text highlight is enabled:
+
+#+begin_src emacs-lisp
+(setq org-highlight-latex-and-related '(latex))
+#+end_src
+
+The asterics are changed to UTF-8 bullets with the 'org-superstar' package:
+
+#+begin_src emacs-lisp
+(use-package org-superstar
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1))))
+#+end_src
+
+** SNIPPETS
+
+The package to create and edit snippets is called 'yasnippets'.
+
+#+begin_src emacs-lisp
+(use-package yasnippet
+  :config
+  (add-to-list 'load-path
+               "~/.doom.d/snippets/")
+  (yas-global-mode 1))
+#+end_src
+
