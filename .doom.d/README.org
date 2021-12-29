@@ -25,6 +25,12 @@ Now, the theme is selected. I'm currently using Doom Emac's 'doom-one' default t
 (setq doom-theme 'doom-one)
 #+end_src
 
+The following is an icon set that can be used with dashboard, dired, ibuffer and other Emacs programs:
+
+#+begin_src emacs-lisp
+(use-package all-the-icons)
+#+end_src
+
 Now, the line numbering is changed to relative but the current line number is mantained. The first line sets it globally and the second one does the trick.
 
 #+begin_src emacs-lisp

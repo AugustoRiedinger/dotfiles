@@ -58,3 +58,4 @@
 (package! org-bullets)
 (package! org-superstar)
 (package! auctex)
+(package! all-the-icons)
