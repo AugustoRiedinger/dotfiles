@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: figh
+# key: figh
+# --
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{../images/$1.png}
+    \caption{$2}
+    \label{fig:$1}
+\end{figure}

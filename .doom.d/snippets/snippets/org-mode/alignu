@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: alignu
+# key: alu
+# --
+\begin{align*}
+    $0
+\end{align*}

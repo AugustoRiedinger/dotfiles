@@ -1,16 +1,20 @@
 #+TITLE: Doom Emac's Config
 #+AUTHOR: A. Riedinger
-#+PROPERTY: header-args :tangle config.el
+#+PROPERTY: header-args :tangle yes
 
 * TABLE OF CONTENTS :toc:
 - [[#general][GENERAL]]
 - [[#packages][PACKAGES]]
+  - [[#installing-packages][INSTALLING PACKAGES:]]
   - [[#dashboard][DASHBOARD]]
   - [[#latex][LATEX]]
   - [[#org-mode][ORG-MODE]]
   - [[#snippets][SNIPPETS]]
 
 * GENERAL
+:PROPERTIES:
+:header-args: :tangle config.el
+:END:
 
 First set up full name and email adress:
 
@@ -48,7 +52,61 @@ Finally the "+" buffers are enabled, in order to copy/paste from the system's ke
 
 Here I set up and configure the different external packages. They are all installed in 'packages.el' (remember to do a 'doom sync' after changin 'packages.el')
 
+** INSTALLING PACKAGES:
+:PROPERTIES:
+:header-args: :tangle packages.el
+:END:
+
+To install a package with Doom you must declare them here and run 'doom sync' on the command line, then restart Emacs for the changes to take effect -- or use 'M-x doom/reload'.
+
+All packages installed are from MELPA, ELPA or emacsmirror:
+
+*** Dashboard:
+
+Here are the packages needed for Emacs Dashboard:
+#+begin_src emacs-lisp
+(package! evil-tutor)
+(package! page-break-lines)
+(package! projectile)
+(package! all-the-icons)
+(package! dashboard)
+#+end_src
+
+*** Yasnippets:
+
+Here is the package for Yasnippets:
+#+begin_src emacs-lisp
+(package! yasnippet)
+#+end_src
+
+*** Org-bullets:
+
+The following are packages for Org-bullets:
+
+#+begin_src emacs-lisp
+(package! org-bullets)
+(package! org-superstar)
+#+end_src
+
+*** Latex:
+
+This package is for editing .tex files:
+
+#+begin_src emacs-lisp
+(package! auctex)
+#+end_src
+*** Org-roam:
+
+Installing org-roam:
+
+#+begin_src emacs-lisp
+(package! org-roam)
+#+end_src
+
 ** DASHBOARD
+:PROPERTIES:
+:header-args: :tangle config.el
+:END:
 
 Emacs Dashboard is an extensible startup screen showing recent files, bookmars and more.
 
@@ -81,6 +139,9 @@ The following setting ensures that emacsclient always opens on *dashboard* rathe
 #+end_src
 
 ** LATEX
+:PROPERTIES:
+:header-args: :tangle config.el
+:END:
 
 Text highlight and latex functions are enabled in all .tex files:
 
@@ -102,6 +163,9 @@ Now we set up IEEEtran as a new '\documentclass'. It can be installed with 'texl
 #+end_src
 
 ** ORG-MODE
+:PROPERTIES:
+:header-args: :tangle config.el
+:END:
 
 Here we set up different setting for working in org-mode.
  + The default directories for org files and agenda are change to '~/org/' and '~/org/agenda/' respectively.
@@ -133,7 +197,35 @@ The asterics are changed to UTF-8 bullets with the 'org-superstar' package:
   (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1))))
 #+end_src
 
+And the following is the standar configuration for org-roam. Org Roam is an excellent tool for writing and organizing your thoughts, but when you leverage more of the functions it provides, you can create highly efficient custom workflows for common tasks.
+
+#+begin_src emacs-lisp
+(use-package org-roam
+  :ensure t
+  :init
+  (setq org-roam-v2-ack t)
+  :custom
+  (org-roam-directory "~/org/roam/")
+  (org-roam-completion-everywhere t)
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n i" . org-roam-node-insert)
+         :map org-mode-map
+         ("C-M-i" . completion-at-point)
+         :map org-roam-dailies-map
+         ("Y" . org-roam-dailies-capture-yesterday)
+         ("T" . org-roam-dailies-capture-tomorrow))
+  :bind-keymap
+  ("C-c n d" . org-roam-dailies-map)
+  :config
+  (require 'org-roam-dailies) ;; Ensure the keymap is available
+  (org-roam-db-autosync-mode))
+#+end_src
+
 ** SNIPPETS
+:PROPERTIES:
+:header-args: :tangle config.el
+:END:
 
 The package to create and edit snippets is called 'yasnippets'.
 

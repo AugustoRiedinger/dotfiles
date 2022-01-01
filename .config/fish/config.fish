@@ -127,7 +127,6 @@ alias newtag='git tag -a'
 
 # Programs:
 alias v='vim'
-alias eser='emacs --daemon &'
 alias pdf='zathura'
 alias img='vimiv'
 alias shareScreen='xcompmgr -c -l0 -t0 -r0 -o.00'

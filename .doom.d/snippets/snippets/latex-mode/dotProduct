@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: dotProduct
+# key: dot
+# --
+\cdot $0

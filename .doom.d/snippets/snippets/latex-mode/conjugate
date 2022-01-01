@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: conjugate
+# key: conj
+# --
+\overline{$1}$0
