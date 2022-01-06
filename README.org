@@ -31,6 +31,10 @@ Contains the configuration for rofi menu. Mainly all the defaults of EndeavourOS
 *** starship.toml
 
 The configuration for starship prompt. It's modified to work with no symbols and git management. It is not used with fish shell.
+*** zathura
+Contains the configuration for Zathura PDF Viewver.
+
+Mainly setting darkmode, changing fonts and disabling the status bar by default.
 
 ** .doom.d
 
