@@ -1,0 +1,36 @@
+set notification-error-bg       "#e95678" #red
+set notification-error-fg       "#232530" #black
+set notification-warning-bg     "#fab795" #yellow
+set notification-warning-fg     "#232530" #black
+set notification-bg             "#e95678" #green
+set notification-fg             "#232530" #black
+
+set completion-bg               "#232530" #black
+set completion-fg               "#fab795" #yellow
+set completion-group-bg         "#232530" #black
+set completion-group-fg         "#fbc3a7" #orange
+set completion-highlight-bg     "#232530" #black
+set completion-highlight-fg     "#b877db" #magenta
+
+# Define the color in index mode
+set index-bg                    "#232530" #black
+set index-fg                    "#fdf0ed" #white
+set index-active-bg             "#232530" #black
+set index-active-fg             "#fdf0ed" #white
+
+set inputbar-bg                 "#232530" #black
+set inputbar-fg                 "#bbbbbb" #gray-ish
+
+set statusbar-bg                "#232530" #black
+set statusbar-fg                "#bbbbbb" #gray-ish
+
+set highlight-color             "#fbc3a7" #bright yellow
+set highlight-active-color      "#f075b5" #bright magenta
+
+set default-bg                  "#232530" #black
+set default-fg                  "#fdf0ed" #white
+set render-loading              true
+set render-loading-bg           "#232530" #black
+set render-loading-fg           "#fdf0ed" #white
+
+set guioptions ""
