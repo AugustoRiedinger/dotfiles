@@ -325,17 +325,11 @@ exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
 
 # Autostart apps as you like
 
-# Enable autotilng:
-exec 'autotiling'
-
-# Start Emacs server:
-exec 'emacs --daemon'
-
-# Terminal on ws2:
-exec 'workspace 1; exec alacritty'
+# Terminal on ws1:
+exec --no-startup-id i3-msg 'workspace 1; exec alacritty'
 
 # Messaging apps on ws1:
-exec --no-startup-id i3-msg 'workspace M; exec whatsapp-nativefier-dark'
+exec --no-startup-id i3-msg 'workspace M; exec brave'
 exec --no-startup-id i3-msg 'workspace M; exec thunderbird'
 exec --no-startup-id i3-msg 'workspace M; exec telegram-desktop'
 
