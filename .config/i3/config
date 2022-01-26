@@ -238,7 +238,7 @@ bindsym $mod+Shift+a exec /usr/local/bin/switch-audio-port
 
 ## App shortcuts
 bindsym $mod+n exec /usr/bin/thunar
-bindsym Print exec deepin-screenshot
+bindsym Print exec flameshot gui
 
 ##########################################
 # configuration for workspace behaviour: #

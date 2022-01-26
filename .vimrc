@@ -141,39 +141,8 @@ endif
 
 " Begin plugins:
 call plug#begin(expand('~/.vim/plugged'))
-
-"Syntax highlighting and autocompletion
-Plug 'neoclide/coc.nvim' , { 'branch' : 'release' }
-Plug 'sheerun/vim-polyglot'
-Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
-Plug 'jiangmiao/auto-pairs'
-Plug 'alvan/vim-closetag'
-
-"File search and navigation
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-" Vimtex :
-Plug 'lervag/vimtex'
-
-" UltiSnips :
-Plug 'sirver/ultisnips'
-
-" Tex autoconceal:
-Plug 'KeitaNakamura/tex-conceal.vim'
-
 " Interface and theming:
 Plug 'dylanaraps/wal'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'ryanoasis/vim-devicons'
-Plug 'yggdroot/indentline'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
-"Debugging, refactoring and version control
-Plug 'puremourning/vimspector'
-
 " End plugins:
 call plug#end()
 
@@ -184,25 +153,3 @@ set t_Co=256
 set background=dark
 let g:hybrid_termcolors=256
 let g:hybrid_termtrans=1
-
-" Vimtex configuration:
-let g:tex_flavor='latex'
-let g:vimtex_view_method='zathura'
-let g:vimtex_quickfix_mode=0
-set conceallevel=1
-let g:tex_conceal='abdmg'
-
-" Ultisnips configuration:
-let g:UltiSnipsExpandTrigger = '<tab>'
-let g:UltiSnipsJumpForwardTrigger = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
-
-" Tex autonceal configuration:
-set conceallevel=1
-let g:tex_conceal='abdmg'
-hi Conceal ctermbg=none
-
-"Interface configuration:
-let g:airline_powerline_fonts = 2
-let g:airline_theme='powerlineish'
-let g:coc_global_extensions = [ 'coc-tsserver' ]
