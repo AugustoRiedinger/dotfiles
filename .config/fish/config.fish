@@ -131,3 +131,11 @@ alias pdf='zathura'
 alias img='vimiv'
 alias shareScreen='xcompmgr -c -l0 -t0 -r0 -o.00'
 alias drag='dragon-drag-and-drop'
+
+# OpenFOAM:
+alias blockMesh='blockMesh | tee log.blockMesh'
+alias wmake='wmake | tee log.wmake'
+alias checkMesh='checkMesh | tee log.checkMesh'
+alias icoFoam='icoFoam | tee log.icoFoam'
+alias simpleFoam='simpleFoam | tee log.simpleFoam'
+alias foamDummy='touch open.foam'
