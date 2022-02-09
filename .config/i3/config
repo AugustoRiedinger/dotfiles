@@ -142,7 +142,7 @@ bindsym $mod+v exec zathura
 bindsym $mod+c kill
 
 # exit-menu
-bindsym $mod+p exec ~/.config/i3/scripts/powermenu
+bindsym $mod+p exec ~/.config/i3/scripts/powermenu.sh
 
 # Lock the system
 # lock with a picture:
