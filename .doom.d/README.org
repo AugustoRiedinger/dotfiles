@@ -147,6 +147,9 @@ Text highlight and latex functions are enabled in all .tex files:
 
 #+begin_src emacs-lisp
 (setq tex-dvi-view-command "xdvi")
+(global-font-lock-mode t)
+(add-hook 'org-mode-hook 'org-fragtog-mode)
+(after! org (plist-put org-format-latex-options :scale 0.5))
 #+end_src
 
 Now we set up IEEEtran as a new '\documentclass'. It can be installed with 'texlive-publisher' from the Arch repository.

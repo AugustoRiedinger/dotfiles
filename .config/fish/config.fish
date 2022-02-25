@@ -93,6 +93,11 @@ alias ...='cd ../..'
 alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
+alias gimap='cd uni/gimap/'
+
+#General:
+alias tpoff='synclient TouchpadOff=1'
+alias tpon='synclient TouchpadOff=0'
 
 # Changing "ls" to "exa":
 alias ls='exa -l --color=always --group-directories-first' 
@@ -133,6 +138,10 @@ alias shareScreen='xcompmgr -c -l0 -t0 -r0 -o.00'
 alias drag='dragon-drag-and-drop'
 
 # OpenFOAM:
+alias of='cd /opt/OpenFOAM/OpenFOAM-9/'
+alias ofwd='cd $WM_PROJECT_USER_DIR/'
+alias oftut='cd /opt/OpenFoam/OpenFoam-9/tutorials/'
+alias ofgim='cd $HOME/uni/gimap/openfoam'
 alias blockMesh='blockMesh | tee log.blockMesh'
 alias wmake='wmake | tee log.wmake'
 alias checkMesh='checkMesh | tee log.checkMesh'

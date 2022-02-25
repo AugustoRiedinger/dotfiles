@@ -54,6 +54,9 @@ colors:
     magenta: '#a47de9'
     cyan: '#99faf2'
     white: '#ffffff'
+
+window: 
+    opacity: 0.85
 theme: iTerm-Default
 
 font:
