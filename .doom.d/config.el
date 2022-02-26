@@ -10,6 +10,12 @@
 
 (setq x-select-enable-clipboard t)
 
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'objc-mode-hook 'irony-mode)
+
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
 (use-package dashboard
 :init
 (setq dashboard-set-heading-icons t)
@@ -26,6 +32,9 @@
 (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
 
 (setq tex-dvi-view-command "xdvi")
+(global-font-lock-mode t)
+(add-hook 'org-mode-hook 'org-fragtog-mode)
+(after! org (plist-put org-format-latex-options :scale 0.5))
 
 (with-eval-after-load 'ox-latex
    (add-to-list 'org-latex-classes

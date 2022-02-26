@@ -1,3 +1,5 @@
 //@theme "/usr/share/rofi/themes/purple.rasi"
 //@theme "/usr/share/rofi/themes/purple.rasi"
-@theme "~/.config/rofi/nord.rasi"
+//@theme "~/.config/rofi/nord.rasi"
+@theme "~/.config/rofi/mine.rasi"
+

@@ -8,7 +8,6 @@
 
 (package! org-bullets)
 (package! org-superstar)
-(package! org-fragtog)
 
 (package! auctex)
 
