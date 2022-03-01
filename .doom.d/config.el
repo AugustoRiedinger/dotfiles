@@ -1,7 +1,7 @@
 (setq user-full-name "Augusto Riedinger"
       user-mail-address "riedinger.augusto@gmail.com")
 
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-molokai)
 
 (use-package all-the-icons)
 
@@ -9,12 +9,6 @@
 (setq display-line-numbers-type 'relative)
 
 (setq x-select-enable-clipboard t)
-
-(add-hook 'c++-mode-hook 'irony-mode)
-(add-hook 'c-mode-hook 'irony-mode)
-(add-hook 'objc-mode-hook 'irony-mode)
-
-(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
 (use-package dashboard
 :init

@@ -12,3 +12,5 @@
 (package! auctex)
 
 (package! org-roam)
+
+(package! org-fragtog)
