@@ -25,7 +25,7 @@ end
 ### PATH CONFIG: 
 # First line removes the path; second line sets it.  Without the first line, your path gets massive and fish becomes very slow:
 set -e fish_user_paths
-set -U fish_user_paths /bin $HOME/scripts $HOME/.emacs.d/bin  $fish_user_paths
+set -U fish_user_paths /bin $HOME/scripts $HOME/.emacs.d/bin $HOME/.local/bin  $fish_user_paths
 
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 # * * * * * * * * * * * * * *        STARTUP      * * * * * * * * * * * * * *
@@ -95,10 +95,6 @@ alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 alias gimap='cd uni/gimap/'
 
-#General:
-alias tpoff='synclient TouchpadOff=1'
-alias tpon='synclient TouchpadOff=0'
-
 # Changing "ls" to "exa":
 alias ls='exa -l --color=always --group-directories-first' 
 alias la='exa -la --color=always --group-directories-first'
@@ -111,7 +107,7 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 # Confirm before overwriting something:
-alias cp="cp -i"
+alias cp="ptcp"
 alias mv='mv -i'
 alias rm='rm -i'
 
@@ -130,8 +126,9 @@ alias push='git push origin'
 alias tag='git tag'
 alias newtag='git tag -a'
 
-# Programs:
+# Apps:
 alias v='vim'
+alias e='emacsclient'
 alias pdf='zathura'
 alias img='vimiv'
 alias shareScreen='xcompmgr -c -l0 -t0 -r0 -o.00'
@@ -148,3 +145,6 @@ alias checkMesh='checkMesh | tee log.checkMesh'
 alias icoFoam='icoFoam | tee log.icoFoam'
 alias simpleFoam='simpleFoam | tee log.simpleFoam'
 alias foamDummy='touch open.foam'
+alias run='cd $FOAM_RUN'
+alias src='cd $FOAM_SRC'
+alias solvers='cd $FOAM_SOLVERS'

@@ -1,63 +1,95 @@
-items:
-  - colors:
-      name: 3024 (dark)
-      author: Chris Kempson
-      primary:
-        background: "#090300"
-        foreground: "#a5a2a2"
-      cursor:
-        text: "#090300"
-        cursor: "#a5a2a2"
-      normal:
-        black: "#090300"
-        red: "#db2d20"
-        green: "#01a252"
-        yellow: "#fded02"
-        blue: "#01a0e4"
-        magenta: "#a16a94"
-        cyan: "#b5e4f4"
-        white: "#a5a2a2"
-      bright:
-        black: "#5c5855"
-        red: "#db2d20"
-        green: "#01a252"
-        yellow: "#fded02"
-        blue: "#01a0e4"
-        magenta: "#a16a94"
-        cyan: "#b5e4f4"
-        white: "#f7f7f7"
-  - theme: 3024.dark
-colors:
-  # Default colors
-  primary:
-    background: '#101421'
-    foreground: '#fffbf6'
+# Alacritty Config
+#
+# ~/.config/alacritty/alacritty.yml
 
-  # Normal colors
-  normal:
-    black: '#2e2e2e'
-    red: '#eb4129'
-    green: '#abe047'
-    yellow: '#f6c744'
-    blue: '#47a0f3'
-    magenta: '#7b5cb0'
-    cyan: '#64dbed'
-    white: '#e5e9f0'
+window:
+  
+  #dimensions:
+  #  columns: 0
+  #  lines: 0
 
-  # Bright colors
-  bright:
-    black: '#565656'
-    red: '#ec5357'
-    green: '#c0e17d'
-    yellow: '#f9da6a'
-    blue: '#49a4f8'
-    magenta: '#a47de9'
-    cyan: '#99faf2'
-    white: '#ffffff'
+  #position:
+  #  x: 0
+  #  y: 0
 
-window: 
-    opacity: 0.85
-theme: iTerm-Default
+  padding:
+    x: 20
+    y: 20
+
+  dynamic_padding: true
+
+  # full | none
+  decorations: full
+
+  # Windowed | Maximized | Fullscreen
+  startup_mode: Maximized
+  
+  opacity: 0.9
+  
+  dynamic_title: true
+  
+  gtk_theme_variant: dark
+
+scrolling:
+  
+  history: 10000
+  
+  multiplier: 3
 
 font:
   size: 9
+
+  builtin_box_drawing: true 
+
+  draw_bold_text_with_bright_colors: true
+
+colors:
+
+  primary:
+    foreground: '#D9E0EE'
+    background: '#0f0f17'
+  
+  cursor:
+    text: CellBackground
+    cursor: CellForeground
+
+  normal:
+    black:   '#13141c'
+    red:     '#F28FAD'
+    green:   '#ABE9B3'
+    yellow:  '#F8BD96'
+    blue:    '#78aed3'
+    magenta: '#E8A2AF'
+    cyan:    '#89DCEB'
+    white:   '#d3dced'
+
+  bright:
+    black:   '#646a73'
+    red:     '#F28FAD'
+    green:   '#ABE9B3'
+    yellow:  '#F8BD96'
+    blue:    '#78aed3'
+    magenta: '#E8A2AF'
+    cyan:    '#89DCEB'
+    white:   '#bfc9db'
+
+selection:
+
+  save_to_clipboard: true
+
+cursor:
+
+  style:
+    # Block | Beam | Underline
+    shape: Block
+    # Never | Off | On | Always
+    blinking : on
+
+  blink_interval: 750
+
+  unfocused_hollow: true
+
+  live_config_reload: true
+
+shell:
+  program: /bin/fish
