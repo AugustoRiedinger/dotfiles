@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: ieee
+# key: ieee
+# condition: t
+# --
+#+LATEX_CLASS: IEEEtran
+#+LATEX_CLASS_OPTIONS: [conference]
+#+LATEX_HEADER: \input{~/org/latex/ieee.tex}
+#+STARTUP: showeverything inlineimages
+
+#+TITLE: $1
+#+AUTHOR: $2

@@ -24,7 +24,7 @@ window:
   # Windowed | Maximized | Fullscreen
   startup_mode: Maximized
   
-  opacity: 0.9
+  opacity: 0.7
   
   dynamic_title: true
   
@@ -37,7 +37,7 @@ scrolling:
   multiplier: 3
 
 font:
-  size: 9
+  size: 7 
 
   builtin_box_drawing: true 
 

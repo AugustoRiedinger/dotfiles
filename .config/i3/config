@@ -310,10 +310,10 @@ exec --no-startup-id i3-msg 'workspace 1; exec alacritty'
 exec --no-startup-id i3-msg 'workspace 1; exec qutebrowser'
 
 # Messaging apps on ws1:
-exec --no-startup-id i3-msg 'workspace M; exec brave'
+exec --no-startup-id i3-msg 'workspace M; exec firefox'
 
 # Touchpad config on startup:
-exec --no-startup-id $HOME/scripts/tpconfig
+exec --no-startup-id $HOME/scripts/tpoff
 
 # set floating (nontiling)for apps needing it
 for_window [class="Yad" instance="yad"] floating enable
@@ -331,6 +331,7 @@ for_window [class="qt5ct" instance="qt5ct"] floating enable
 for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
 for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
 for_window [class="Pamac-manager"] floating enable
+for_window [class="megasync" instance="*"] floating enable
 
 ######################################
 # color settings for bar and windows #

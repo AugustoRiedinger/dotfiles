@@ -44,6 +44,10 @@ unclutter -idle 4 -jitter 2 -root &
 # Cool term art:
 colorscript random
 
+# OMF theme config:
+set -U dangerous_nogreeting
+set dangerous_colors ff3399 ff3399 ff3399 ff3399 ff3399 ff0000 ff0033 3300ff 0000ff 00ffff 00ff00
+
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 # * * * * * * * * * * * * * *      FUNCTIONS      * * * * * * * * * * * * * *
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -107,7 +111,6 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 # Confirm before overwriting something:
-alias cp="ptcp"
 alias mv='mv -i'
 alias rm='rm -i'
 
@@ -132,7 +135,7 @@ alias e='emacsclient'
 alias pdf='zathura'
 alias img='vimiv'
 alias shareScreen='xcompmgr -c -l0 -t0 -r0 -o.00'
-alias drag='dragon-drag-and-drop'
+alias drag='dragon-drop'
 
 # OpenFOAM:
 alias of='cd /opt/OpenFOAM/OpenFOAM-9/'

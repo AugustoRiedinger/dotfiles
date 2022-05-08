@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: versor
+# key: ver
+# --
+\breve{$1}$0

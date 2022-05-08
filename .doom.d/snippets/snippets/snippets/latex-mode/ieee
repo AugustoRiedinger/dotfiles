@@ -1,0 +1,111 @@
+# -*- mode: snippet -*-
+# name: ieee
+# key: ieee
+# --
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+% * * * * * * * * * * * *         LATEX PREAMBLE      * * * * * * * * *
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+% IEEE document class:
+\documentclass[conference]{IEEEtran}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%                                    PACKAGES:
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% Setting the laguage as spanish:
+\usepackage[spanish]{babel}
+
+% Maths packages:
+\usepackage{amsmath,nicefrac,amssymb}
+
+% Figures packages:
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{siunitx}
+
+% Listings and code packages:
+\usepackage{listings}
+\usepackage{algorithm,algorithmic}
+
+% Hyperlinks - URLs set in blue, rest in black:
+\usepackage[colorlinks=true,linkcolor=black,anchorcolor=black,citecolor=cyan,filecolor=black,menucolor=black,runcolor=black,urlcolor=blue]{hyperref}
+
+% Tables from cvs:
+\usepackage{csvsimple}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%                                 CONFIGURATION:
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% Title:
+\title{$1}
+
+% Authors:
+\author{
+    \IEEEauthorblockN{A. Riedinger}
+    \IEEEauthorblockA{Universidad Tecnológica Nacional\\
+                      Departamento de Electrónica\\
+                      Bahía Blanca, Argentina\\
+                      Email:
+			          \href{mailto:ariedinger4@duck.com}{ariedinger4@duck.com}}
+    \and
+
+    \IEEEauthorblockN{$2}
+    \IEEEauthorblockA{Universidad Tecnológica Nacional\\
+                      Departamento de Electrónica\\
+                      Bahía Blanca, Argentina\\
+                      Email: \href{mailto:$3}{$3}}
+}
+
+% Change the name for keywords:
+\renewcommand\IEEEkeywordsname{Palabras Clave}
+
+% Listings package configuration:
+\lstset{
+        language=octave,
+        basicstyle=\small\sffamily,
+        numberstyle=\tiny,
+        frame=tb,
+        tabsize=4,
+        columns=fixed,
+        showstringspaces=false,
+        showtabs=false,
+        keepspaces,
+        commentstyle=\color{green},
+        keywordstyle=\color{blue}
+}
+
+% Sintax setup:
+\sisetup{
+    round-mode		= places, % Rounds numbers
+    round-precision = 2,	  % to 2 places
+}
+
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+% * * * * * * * * * * * *         BEGIN DOCUMENT	  * * * * * * * * *
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+\begin{document}
+
+    % Title information:
+    \maketitle
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    % Abstract:
+    \begin{abstract}
+        $4
+    \end{abstract}
+
+    % Keywords:
+    \begin{IEEEkeywords}
+        $5
+    \end{IEEEkeywords}
+
+    % Table of contents:
+    \tableofcontents
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    \section{$6:}
+
+		$0
+
+\end{document}
