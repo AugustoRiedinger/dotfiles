@@ -278,6 +278,14 @@ exec --no-startup-id ~/.screenlayout/monitor.sh
 # start blueberry app for managing bluetooth devices from tray:
 exec --no-startup-id blueberry-tray
 
+# start emacs daemon
+exec --no-startup-id emacs --daemon
+
+# start unclutter - hide the mouse pointer
+exec --no-startup-id unclutter -idle 4 -jitter 2 -root &
+
+# Change caps to esc
+exec --no-startup-id setxkbmap -option caps:escape
 # transparency
 # uncomment one of them to be used (picom package is installed per default)
 # options could need changes, related to used GPU and drivers.
@@ -306,8 +314,7 @@ exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
 # Autostart apps as you like
 
 # Terminal on ws1:
-exec --no-startup-id i3-msg 'workspace 1; exec alacritty'
-exec --no-startup-id i3-msg 'workspace 1; exec qutebrowser'
+exec --no-startup-id i3-msg 'workspace M; exec alacritty'
 
 # Messaging apps on ws1:
 exec --no-startup-id i3-msg 'workspace M; exec firefox'
