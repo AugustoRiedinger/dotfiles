@@ -1,0 +1,3 @@
+function foam
+  bash
+end

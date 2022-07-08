@@ -1,3 +1,3 @@
 function run
-  command cd $FOAM_RUN
+  cd $FOAM_RUN
 end
